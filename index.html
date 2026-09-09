@@ -34,61 +34,84 @@
                 A vibrant boutique hotel, African art gallery, and live music hub in <strong>Ikoyi</strong>.
             </p>
         </article>
+        <!-- Supporting links for visitors who want to learn more about Lagos and the project -->
+        <p>
+            Want to discover more about the city and the people behind the guide?
+            <a href='https://en.wikipedia.org/wiki/Lagos' target="_blank" rel="noopener noreferrer">Learn more about
+                Lagos</a>
+            and <a href="about.html">find out about our mission</a>.
+        </p>
+
+        <!-- This section helps organize additional spot ideas and keeps the page readable -->
+        <section aria-labelledby="go-to-top">
+            <h3 id="go-to-top">Explore More Spots</h3>
+            <p>
+                Lagos is full of vibrant energy, beautiful spaces, and memorable experiences. From cozy cafés to lively
+                dining
+                spots and quiet places to study, the city offers something for every mood and schedule.
+            </p>
+            <p>
+                As you explore, look for places that balance comfort, atmosphere, and community. Great spots are not
+                just
+                about
+                the location; they are also about how they make people feel when they walk in.
+            </p>
+        </section>
+
+        <!-- A simple list of the categories the website focuses on -->
+        <section aria-labelledby="list-of-spots">
+            <h3 id="list-of-spots">List of Spots</h3>
+            <ul style="list-style-type: square;">
+                <li>Restaurants</li>
+                <li>Study Spots</li>
+                <li>Hangouts</li>
+            </ul>
+            <ol style="list-style-type: upper-roman;">
+                <li>Restaurants</li>
+                <li>Study Spots</li>
+                <li>Hangouts</li>
+            </ol>
+        </section>
+
+        <!-- Image -->
+        <article class='spot-card' id='spot-terra-kulture'>
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_l7kwDILBDHpURHJiri9vqJg5UuNE2rEbpbHT1MghtOgdt0RvELtzuA&s=10'
+                alt='Exhibition gallery space at Terra Kulture in Victoria Island showing contemporary Nigerian artwork'
+                width="35%">
+            <h3 class='spot-card__title'>Terra Kulture</h3>
+            <ul class='spot-card__tags'>
+                <li>Art Gallery</li>
+                <li>Restaurant</li>
+                <li>Theatre</li>
+            </ul>
+            <p class='spot-card__description'>
+                A renowned cultural center featuring Nigerian cuisine, art exhibitions, and theatrical stage plays.
+            </p>
+            <a href='https://maps.google.com' target='_blank' rel='noopener noreferrer'>View on Map</a>
+        </article>
+        <br />
+        <br />
+
+        <form>
+            <label for='spot-name'>Spot Name</label>
+            <input type="text" id="spot-name" minlength="3" maxlength="12" placeholder="Enter Spot Name..." required>
+            <select required>
+                <option value="restaurant">Restaurant</option>
+                <option value="study-spot">Study Spot</option>
+                <option value="hangout">Hangout</option>
+            </select>
+            <br />
+            <br />
+            <textarea placeholder="Describe the spot..." required></textarea>
+            <br />
+            <br />
+            <button type="submit">Submit Spot</button>
+            <button type="reset">Reset Form</button>
+        </form>
+
     </main>
 
-    <!-- Supporting links for visitors who want to learn more about Lagos and the project -->
-    <p>
-        Want to discover more about the city and the people behind the guide?
-        <a href='https://en.wikipedia.org/wiki/Lagos' target="_blank" rel="noopener noreferrer">Learn more about
-            Lagos</a>
-        and <a href="about.html">find out about our mission</a>.
-    </p>
 
-    <!-- This section helps organize additional spot ideas and keeps the page readable -->
-    <section aria-labelledby="go-to-top">
-        <h3 id="go-to-top">Explore More Spots</h3>
-        <p>
-            Lagos is full of vibrant energy, beautiful spaces, and memorable experiences. From cozy cafés to lively
-            dining
-            spots and quiet places to study, the city offers something for every mood and schedule.
-        </p>
-        <p>
-            As you explore, look for places that balance comfort, atmosphere, and community. Great spots are not just
-            about
-            the location; they are also about how they make people feel when they walk in.
-        </p>
-    </section>
-
-    <!-- A simple list of the categories the website focuses on -->
-    <section aria-labelledby="list-of-spots">
-        <h3 id="list-of-spots">List of Spots</h3>
-        <ul style="list-style-type: square;">
-            <li>Restaurants</li>
-            <li>Study Spots</li>
-            <li>Hangouts</li>
-        </ul>
-        <ol style="list-style-type: upper-roman;">
-            <li>Restaurants</li>
-            <li>Study Spots</li>
-            <li>Hangouts</li>
-        </ol>
-    </section>
-
-    <!-- Image -->
-    <article class='spot-card' id='spot-terra-kulture'>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_l7kwDILBDHpURHJiri9vqJg5UuNE2rEbpbHT1MghtOgdt0RvELtzuA&s=10'
-            alt='Exhibition gallery space at Terra Kulture in Victoria Island showing contemporary Nigerian artwork'>
-        <h3 class='spot-card__title'>Terra Kulture</h3>
-        <ul class='spot-card__tags'>
-            <li>Art Gallery</li>
-            <li>Restaurant</li>
-            <li>Theatre</li>
-        </ul>
-        <p class='spot-card__description'>
-            A renowned cultural center featuring Nigerian cuisine, art exhibitions, and theatrical stage plays.
-        </p>
-        <a href='https://maps.google.com' target='_blank' rel='noopener noreferrer'>View on Map</a>
-    </article>
 
     <footer>
         <p>&copy; 2026 Lagos Spots. Built for the community.</p>
