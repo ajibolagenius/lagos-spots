@@ -1,0 +1,37 @@
+/* Element Selector */
+p {
+    line-height: 1.6;
+    color: #333333;
+}
+
+/* Class Selector */
+.spot-card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+/* Descendant Combinator */
+.spot-card h3 {
+    margin-top: 0;
+    color: tomato;
+}
+
+/* Child Combinator */
+.spot-card > h3 {
+    margin-top: 0;
+    color: dodgerblue;
+}
+
+/* Pseudo-class Selector */
+.spot-card:hover {
+    background-color: #5fbffb58;
+}
+
+/* Accessible Focus Selector */
+input:focus {
+    outline: 2px solid tomato;
+    /* outline-offset: 2px; */
+}
