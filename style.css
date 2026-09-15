@@ -56,5 +56,5 @@ input:focus {
     width: 200px;
     border: 5px solid dodgerblue;
     margin-top: 0;
-    display: none;
+    /* display: none; */
 }
