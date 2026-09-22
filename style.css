@@ -5,20 +5,80 @@
     box-sizing: border-box;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+a {
+    text-decoration: none;
+}
 
-    background-color: #ffffff;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 1rem 2rem;
-    margin-bottom: 20px;
+/* ==========================================================================
+   Page Layout & Wrapper Constraints
+   ========================================================================== */
+.page-container {
+  width: 100%;
+  max-width: 1200px; /* Prevents line lengths from stretching on ultrawide monitors */
+  margin: 0 auto;    /* Centers container horizontally */
+  padding: 0 1.25rem;
+}
+
+/* ==========================================================================
+   Responsive Header (Mobile-First)
+   ========================================================================== */
+.header {
+  display: flex;
+  flex-direction: column; /* Stack logo and nav vertically on mobile */
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: tomato;
 }
 
 .nav__list {
-    display: flex;
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+/* Tablet & Desktop Header Enhancement */
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;      /* Switch to single row */
+    justify-content: space-between;
     align-items: center;
-    gap: 1.5rem;
-    list-style: none;
+    background-color: darkolivegreen;
+  }
+}
+
+/* ==========================================================================
+   Spots Directory Grid
+   ========================================================================== */
+.spots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* ==========================================================================
+   Internal Card Flexbox Alignment
+   ========================================================================== */
+.spot-card {
+  display: flex;
+  flex-direction: column; /* Allows footer/button to pin to bottom */
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.spot-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.spot-card__description {
+  flex-grow: 1; /* Pushes the card link/action to the very bottom */
+  margin-bottom: 1rem;
 }
