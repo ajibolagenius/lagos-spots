@@ -6,6 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta name='description' content='Discover curated restaurants, study spots, and hangouts across Lagos.'>
     <title>Lagos Spots — Discover Your Next Favorite Place</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- External Styles -->
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -32,14 +33,12 @@
                 place to study</strong>, a trendy restaurant to dine in, or a fun hangout spot, <em>we've got you
                 covered.</em></p>
 
-        <article class='spot-card' id='spot-bogobiri'>
-            <h3 class='spot-card__title'>Bogobiri House</h3>
-            
-            <div>
-                <h3 class='spot-card__title'>Bogobiri House</h3>
+        <article class="flex w-full max-w-md flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md" id='spot-bogobiri'>
+            <div class="mb-3 flex items-start justify-between gap-3">
+                <h3 class="text-xl font-bold text-slate-900">Bogobiri House</h3>
+                <span class="inline-block rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-800">Arts &amp; Music</span>
             </div>
-            
-            <p class='spot-card__description'>
+            <p class="mb-4 flex-grow text-sm text-slate-600">
                 A vibrant boutique hotel, African art gallery, and live music hub in <strong>Ikoyi</strong>.
             </p>
         </article>
@@ -83,20 +82,20 @@
         </section>
 
         <!-- Image -->
-        <article class='spot-card' id='spot-terra-kulture'>
+        <article class="flex w-full max-w-md flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md" id='spot-terra-kulture'>
+            <div class="mb-3 flex items-start justify-between gap-3">
+                <h3 class="text-xl font-bold text-slate-900">Terra Kulture</h3>
+                <span class="inline-block rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-800">Food &amp; Culture</span>
+            </div>
             <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_l7kwDILBDHpURHJiri9vqJg5UuNE2rEbpbHT1MghtOgdt0RvELtzuA&s=10'
                 alt='Exhibition gallery space at Terra Kulture in Victoria Island showing contemporary Nigerian artwork'
-                width="35%">
-            <h3 class='spot-card__title'>Terra Kulture</h3>
-            <ul class='spot-card__tags'>
-                <li>Art Gallery</li>
-                <li>Restaurant</li>
-                <li>Theatre</li>
-            </ul>
-            <p class='spot-card__description'>
+                class="mb-3 h-48 w-full rounded-lg object-cover">
+            <p class="mb-4 flex-grow text-sm text-slate-600">
                 A renowned cultural center featuring Nigerian cuisine, art exhibitions, and theatrical stage plays.
             </p>
-            <a href='https://maps.google.com' target='_blank' rel='noopener noreferrer'>View on Map</a>
+            <a href='https://maps.google.com' target='_blank' rel='noopener noreferrer' class="inline-flex items-center justify-center rounded-lg bg-orange-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-orange-700">
+                View on Google Maps &rarr;
+            </a>
         </article>
         <br />
         <br />

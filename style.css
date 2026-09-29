@@ -57,28 +57,3 @@ a {
   margin-top: 2rem;
 }
 
-/* ==========================================================================
-   Internal Card Flexbox Alignment
-   ========================================================================== */
-.spot-card {
-  display: flex;
-  flex-direction: column; /* Allows footer/button to pin to bottom */
-  height: 100%;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 1.25rem;
-}
-
-.spot-card__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.spot-card__description {
-  flex-grow: 1; /* Pushes the card link/action to the very bottom */
-  margin-bottom: 1rem;
-}
