@@ -118,9 +118,8 @@ const calculateDistanceExp = function (x1, y1, x2, y2) {
 const calculateDistanceArrow = (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1);
 
 // arrow function anatomy
-function add(a, b) {
-  return a + b; // block body, explicit return
-}
+function add(a, b) { return a + b; }
+  // block body, explicit return
 
 const add = (a, b) => a + b; // concise body, implicit return
 
@@ -129,3 +128,13 @@ const add = (a, b) => a + b; // concise body, implicit return
 }; // an anonymous function OR instantly invoked function expression (IIFE)
 
 // console.log((x, y) => {x ** y})
+
+/* Fucntions: Meaning of Hoisting  */
+// Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their containing scope during the compilation phase. This means that you can use functions and variables before they are declared in the code.
+
+
+footballLover(); // invoking a function before its declaration
+
+function footballLover() {
+  console.log("I love football");
+}
