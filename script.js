@@ -180,7 +180,7 @@ console.log(goatName); // ReferenceError: goatName is not defined */
 // }
 
 /* Switch Statement */
-
+/* 
 let dayOfWeek = new Date().getDay();
 let day;
 
@@ -208,3 +208,29 @@ switch (dayOfWeek) {
 }
 
 alert(`Today is ${day}.`); // template literal (string interpolation) using backticks (``) and ${} to embed expressions
+
+function opeYemi() {
+  console.log("Opeyemi Akintunde");
+}
+
+opeYemi(); // invoking the function
+
+
+function openLagosSpot() {
+  return  opeYemi();
+}
+
+openLagosSpot(); // invoking the function */
+
+// Arrays
+
+let fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape", "Honeydew", "Jackfruit", "Kiwi", "Lemon", "Mango", "Nectarine", "Orange", "Papaya", "Quince", "Raspberry", "Strawberry", "Tangerine", "Ugli fruit", "Vanilla bean", "Watermelon", "Xigua", "Yellow passion fruit", "Zucchini"];
+
+
+// fruits.push(true) // adds a new element to the end of the array
+
+// console.log(fruits); // logs the entire array
+
+fruits.shift() // removes the first element from the array
+
+console.log(fruits); // logs the entire array
