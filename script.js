@@ -1,45 +1,30 @@
-/* Arrays and Objects: Data Structures */
+/* JavaScript Loops */
 
-// Module 6: Data Persistence with JSON & localStorage
+// for — while
 
-const STORAGE_KEY = "lagos_spots_favorites";
+// for (let i = 0; i < 10; i++) {
+//   if (i === 3) { continue; }
+//   console.log(i)
+// }
 
-// 1. Function to read saved favorites from storage safely:
-function getSavedFavorites() {
-  const savedData = localStorage.getItem("STORAGE_KEY");
-  if (!savedData) {
-    return []; // Return empty array if nothing was saved yet
-  }
-  try {
-    return JSON.parse(savedData);
-  } catch (error) {
-    console.error("Corrupted storage data:", error);
-    return [];
-  }
-}
+// let fruits = ["apple", "banana", "carrot", "grape", "tomato"];
 
-// 2. Function to save favorites to storage:
-function saveFavorites(favoritesArray) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(favoritesArray));
-}
+// for (i = 0; i < fruits.length; i++) {
+//   console.log(fruits[i])
+//   // console.log(fruits[0]);
+//   // console.log(fruits[1]);
+//   // console.log(fruits[2]);
+// }
 
-// 3. Function to toggle a spot's favorite status:
-function toggleFavorite(spotId) {
-  const currentFavorites = getSavedFavorites();
-  let updatedFavorites;
+// let cars = {
+//   name: 'Tesla',
+//   model: 'Roadstar',
+//   features: ['fly', 'thrusters', '0.9 speed'],
+//   color: ['gray', 'white', 'black']
+// }
 
-  if (currentFavorites.includes(spotId)) {
-    // If already in favorites, remove it:
-    updatedFavorites = currentFavorites.filter(id => id !== spotId);
-    console.log(`Removed spot #${spotId} from favorites.`);
-  } else {
-    // If not in favorites, add it immutably:
-    updatedFavorites = [...currentFavorites, spotId];
-    console.log(`Added spot #${spotId} to favorites.`);
-  }
+// // for (i = 0; i < cars.length; i++) {
+// //   console.log(fruits[i])
+// // }
 
-  saveFavorites(updatedFavorites);
-  return updatedFavorites;
-}
-
-console.log("Initial favorites:", getSavedFavorites());
+// console.log(cars.length)
