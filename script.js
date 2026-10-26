@@ -28,3 +28,5 @@
 // // }
 
 // console.log(cars.length)
+
+// array of objects
