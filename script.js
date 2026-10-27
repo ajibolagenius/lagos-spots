@@ -1,32 +1,51 @@
-/* JavaScript Loops */
+/* Week 8: The DOM, Events & Browser APIs */
 
-// for — while
+// selecting the button
+const btnEnd = document.querySelector("#btn_end");
+const txtArea = document.querySelector("#spot-description");
 
-// for (let i = 0; i < 10; i++) {
-//   if (i === 3) { continue; }
-//   console.log(i)
+// 1. textContent — Reads or writes pure text (Safe & Fast)
+// btnEnd.textContent = "<b>I love Coding!</b>"
+
+// 2. innerHTML — Reads or parses HTML tags (Use carefully!)
+// btnEnd.innerHTML = "<b>I love Coding!</b>"
+
+// 3. .value — Reads or writes the text inside input fields & textareas
+txtArea.value =
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic culpa tenetur dignissimos harum ipsam sed facere reprehenderit ratione praesentium labore? Numquam, eos velit tenetur unde temporibus assumenda quibusdam delectus fugiat!";
+
+// add a class
+btnEnd.classList.add("active");
+
+// removing a class
+// btnEnd.classList.remove('innert')
+
+// btnEnd.classList.toggle("innert")
+
+// 4. Check if a class exists (Returns true or false)
+// if (btnEnd.classList.contains('active')) {
+//     alert('This is an ACTIVE prompt!')
+// } else if (btnEnd.classList.contains('innert')) {
+//     alert('This is an INNERT prompt!')
+// } else {
+//     alert('No classes added!')
 // }
 
-// let fruits = ["apple", "banana", "carrot", "grape", "tomato"];
+// const progressBar = document.querySelector('.review-progress')
+// progressBar.style.width = "80%"
+// progressBar.style.backgroundColor = "tomato"
 
-// for (i = 0; i < fruits.length; i++) {
-//   console.log(fruits[i])
-//   // console.log(fruits[0]);
-//   // console.log(fruits[1]);
-//   // console.log(fruits[2]);
-// }
 
-// let cars = {
-//   name: 'Tesla',
-//   model: 'Roadstar',
-//   features: ['fly', 'thrusters', '0.9 speed'],
-//   color: ['gray', 'white', 'black']
-// }
+/* Events & User Interaction */
 
-// // for (i = 0; i < cars.length; i++) {
-// //   console.log(fruits[i])
-// // }
+// Target:
+const faveBtn = document.querySelector('#fave');
 
-// console.log(cars.length)
+// Event
+faveBtn.addEventListener("click", faveCallback)
 
-// array of objects
+// Handler (Callback)
+function faveCallback() {
+    // alert("User clicked favourite");
+    faveBtn.textContent = "🖤 Favourited";
+}

@@ -5,12 +5,14 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Add a New Spot — Lagos Spots</title>
+    <link rel="stylesheet" href="/lagos-spots/style.css">
+    <script src="/lagos-spots/script.js" defer></script>
 </head>
 
 <body>
     <header>
-        <a href='index.html'>Lagos Spots 📍</a>
-        <nav>
+        <a href='index.html' class='logo'>Lagos Spots 📍</a>
+        <nav aria-label='Main Navigation'>
             <ul>
                 <li><a href='index.html'>Explore Spots</a></li>
                 <li><a href='submit.html' aria-current='page'>Add a Spot</a></li>
@@ -19,46 +21,199 @@
     </header>
 
     <main>
-        <h1>Recommend a Lagos Spot</h1>
-        <p>Know a great hangout, restaurant, or co-working space? Add it to the community directory.</p>
+        <section aria-labelledby='page-title'>
+            <h1 class="spot_title" id='page-title'>Recommend a Lagos Spot</h1>
+            <p>Know a great hangout, restaurant, or co-working space? Add it to the community directory.</p>
+            <p><small>Fields marked <abbr title='required'>*</abbr> are required.</small></p>
+        </section>
 
         <form action='#' method='POST' id='add-spot-form'>
-            <div class='form-group'>
-                <label for='spot-name'>Spot Name</label>
-                <input type='text' id='spot-name' name='spotName' placeholder='e.g. Workstation Bar Beach' required
-                    minlength='3'>
-            </div>
+            <fieldset>
+                <legend>Spot details</legend>
+                <div class='form-group'>
+                    <label for='spot-name'>Spot Name <abbr title='required'>*</abbr></label>
+                    <input type='text' id='spot-name' name='spotName' placeholder='e.g. Workstation Bar Beach'
+                        autocomplete='organization' required minlength='3' maxlength='80'>
+                </div>
+
+                <div class='form-group'>
+                    <label for='spot-category'>Category <abbr title='required'>*</abbr></label>
+                    <select id='spot-category' name='category' required>
+                        <option value=''>Select a category...</option>
+                        <optgroup label='Places to eat and drink'>
+                            <option value='food'>Food &amp; Dining</option>
+                            <option value='nightlife'>Nightlife &amp; Drinks</option>
+                        </optgroup>
+                        <optgroup label='Places to explore'>
+                            <option value='study'>Co-working &amp; Study</option>
+                            <option value='events'>Arts &amp; Events</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class='form-group'>
+                    <label for='spot-area'>Lagos Area / Neighborhood <abbr title='required'>*</abbr></label>
+                    <input type='text' id='spot-area' name='area' list='lagos-areas'
+                        placeholder='e.g. Victoria Island, Yaba, Lekki Phase 1' required>
+                    <datalist id='lagos-areas'>
+                        <option value='Ikeja'></option>
+                        <option value='Ikoyi'></option>
+                        <option value='Lekki'></option>
+                        <option value='Surulere'></option>
+                        <option value='Yaba'></option>
+                    </datalist>
+                </div>
+
+                <div class='form-group'>
+                    <label for='spot-description'>Description &amp; Highlights <abbr title='required'>*</abbr></label>
+                    <textarea id='spot-description' name='description' rows='4' maxlength='500'
+                        placeholder='What makes this spot special? (Ambiance, fast Wi-Fi, signature dishes...)'
+                        required minlength='15'></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Plan a visit</legend>
+                <div class='form-group'>
+                    <label for='visit-date'>Best date to visit</label>
+                    <input type='date' id='visit-date' name='visitDate'>
+                </div>
+                <div class='form-group'>
+                    <label for='opening-time'>Preferred time</label>
+                    <input type='time' id='opening-time' name='openingTime'>
+                </div>
+                <div class='form-group'>
+                    <label for='price-range'>Price range</label>
+                    <select id='price-range' name='priceRange'>
+                        <option value=''>Choose a price range...</option>
+                        <option value='budget'>Budget-friendly</option>
+                        <option value='moderate'>Moderate</option>
+                        <option value='premium'>Premium</option>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label for='rating'>Your rating: <output id='rating-value' for='rating'>3</output> / 5</label>
+                    <input type='range' id='rating' name='rating' min='1' max='5' value='3'>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>What should visitors know?</legend>
+                <p>Choose any features that apply:</p>
+                <div id="code" class='form-group'>
+                    <input type='checkbox' id='has-wifi' name='features' value='wifi'>
+                    <label for='has-wifi'>Free Wi-Fi</label>
+                </div>
+                <div class='form-group'>
+                    <input type='checkbox' id='has-outdoor-seating' name='features' value='outdoor-seating'>
+                    <label for='has-outdoor-seating'>Outdoor seating</label>
+                </div>
+                <div class='form-group'>
+                    <input type='checkbox' id='is-accessible' name='features' value='accessible'>
+                    <label for='is-accessible'>Step-free access</label>
+                </div>
+
+                <p>How busy is it usually?</p>
+                <div class='form-group'>
+                    <input type='radio' id='crowd-quiet' name='crowdLevel' value='quiet'>
+                    <label for='crowd-quiet'>Usually quiet</label>
+                </div>
+                <div class='form-group'>
+                    <input type='radio' id='crowd-busy' name='crowdLevel' value='busy'>
+                    <label for='crowd-busy'>Usually busy</label>
+                </div>
+
+                <div class='form-group'>
+                    <label for='spot-color'>Pick a color that matches the spot</label>
+                    <input type='color' id='spot-color' name='spotColor' value='#e76f51'>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>About your recommendation</legend>
+                <div class='form-group'>
+                    <label for='your-name'>Your name</label>
+                    <input type='text' id='your-name' name='yourName' autocomplete='name'>
+                </div>
+                <div class='form-group'>
+                    <label for='your-email'>Email address</label>
+                    <input type='email' id='your-email' name='email' autocomplete='email'
+                        placeholder='name@example.com'>
+                </div>
+                <div class='form-group'>
+                    <label for='spot-website'>Spot website</label>
+                    <input type='url' id='spot-website' name='website' placeholder='https://example.com'>
+                </div>
+                <div class='form-group'>
+                    <label for='spot-photo'>Choose a photo</label>
+                    <input type='file' id='spot-photo' name='photo' accept='image/*'>
+                </div>
+            </fieldset>
 
             <div class='form-group'>
-                <label for='spot-category'>Category</label>
-                <select id='spot-category' name='category' required>
-                    <option value=''>Select a category...</option>
-                    <option value='food'>Food & Dining</option>
-                    <option value='study'>Co-working & Study</option>
-                    <option value='nightlife'>Nightlife & Drinks</option>
-                    <option value='events'>Arts & Events</option>
-                </select>
+                <input type='checkbox' id='confirm-accuracy' name='confirmAccuracy' value='yes' required>
+                <label for='confirm-accuracy'>I confirm this recommendation is accurate.</label>
             </div>
-
-            <div class='form-group'>
-                <label for='spot-area'>Lagos Area / Neighborhood</label>
-                <input type='text' id='spot-area' name='area' placeholder='e.g. Victoria Island, Yaba, Lekki Phase 1'
-                    required>
-            </div>
-
-            <div class='form-group'>
-                <label for='spot-description'>Description & Highlights</label>
-                <textarea id='spot-description' name='description' rows='4'
-                    placeholder='What makes this spot special? (Ambiance, fast Wi-Fi, signature dishes...)' required
-                    minlength='15'></textarea>
-            </div>
-
             <button type='submit'>Submit Spot for Review</button>
+            <button type='reset'>Reset Form</button>
         </form>
+
+        <aside aria-labelledby='review-status-title'>
+            <h2 id='review-status-title'>Review status example</h2>
+            <p>This spot is <meter min='0' max='100' value='70'>70%</meter> ready for review.</p>
+            <label for='review-progress'>Community review progress</label>
+            <progress id='review-progress' class="review-progress" max='5' value='2'>2 of 5</progress>
+        </aside>
+
+        <section aria-labelledby='sample-spots-title'>
+            <h2 id='sample-spots-title'>Sample community spots</h2>
+            <table>
+                <caption>Examples of recommendations from around Lagos</caption>
+                <thead>
+                    <tr>
+                        <th scope='col'>Spot</th>
+                        <th scope='col'>Area</th>
+                        <th scope='col'>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope='row'>Bogobiri House</th>
+                        <td>Ikoyi</td>
+                        <td>Arts &amp; Music</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>Terra Kulture</th>
+                        <td>Victoria Island</td>
+                        <td>Food &amp; Culture</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <details>
+            <summary>What happens after I submit?</summary>
+            <p>The community team reviews recommendations before they appear in the directory.</p>
+        </details>
+
+        <template id='spot-card-template'>
+            <article class='spot-card'>
+                <h2 class='spot-card__title'></h2>
+                <p class='spot-card__description'></p>
+            </article>
+        </template>
+        <br>
+        <button id="btn_end">Click Me</button>
+        <br>
+        <br>
+        <span id="fave">Favourite</span>
+        <br>
+        <br>
     </main>
 
     <footer>
-        <p>&copy; 2026 Lagos Spots.</p>
+        <p>&copy; <time datetime='2026'>2026</time> Lagos Spots.</p>
+        <a href='index.html'>Back to Explore Spots</a>
     </footer>
 </body>
 
