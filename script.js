@@ -115,3 +115,6 @@ if (spotForm) {
     statusMessage.textContent = `${newSpot.name} was added to the Explore list.`;
   });
 }
+
+setTimeout(() => {console.log("This message will be logged after a delay.");}, 2000);
+
