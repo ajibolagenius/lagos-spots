@@ -10,6 +10,169 @@ const categoryLabels = {
   events: "Arts & Events",
 };
 
+const placeSearchForm = document.querySelector("#place-search-form");
+const placeSearchInput = document.querySelector("#place-search-input");
+const placeSearchButton = document.querySelector("#place-search-submit");
+const placeSearchStatus = document.querySelector("#place-search-status");
+const placeSearchError = document.querySelector("#place-search-error-message");
+const placeSearchFieldError = document.querySelector("#place-search-error");
+const placeSearchSelection = document.querySelector("#place-search-selection");
+const placeSearchResults = document.querySelector("#place-search-results");
+const nominatimMinimumInterval = 1000;
+let lastNominatimRequestAt = 0;
+let isSearchingPlaces = false;
+
+function isGeocodingResult(place) {
+  return (
+    place !== null &&
+    typeof place === "object" &&
+    typeof place.display_name === "string" &&
+    typeof place.lat === "string" &&
+    typeof place.lon === "string" &&
+    (place.name === undefined || typeof place.name === "string")
+  );
+}
+
+async function searchLagosPlaces(searchTerm) {
+  const waitTime = Math.max(
+    0,
+    nominatimMinimumInterval - (Date.now() - lastNominatimRequestAt),
+  );
+
+  if (waitTime > 0) {
+    await new Promise((resolve) => setTimeout(resolve, waitTime));
+  }
+
+  lastNominatimRequestAt = Date.now();
+  const query = encodeURIComponent(`${searchTerm}, Lagos, Nigeria`);
+  const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&countrycodes=ng&limit=3&accept-language=en&q=${query}`;
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`OpenStreetMap returned status ${response.status}.`);
+  }
+
+  const places = await response.json();
+
+  if (!Array.isArray(places) || !places.every(isGeocodingResult)) {
+    throw new TypeError("OpenStreetMap returned places in an unexpected format.");
+  }
+
+  return places;
+}
+
+function clearPlaceSearchFieldError() {
+  placeSearchInput.removeAttribute("aria-invalid");
+  placeSearchFieldError.hidden = true;
+  placeSearchFieldError.textContent = "";
+}
+
+function createPlaceResult(place) {
+  const item = document.createElement("li");
+  item.className = "place-search__item";
+
+  const button = document.createElement("button");
+  button.className = "place-search__result";
+  button.type = "button";
+
+  const title = document.createElement("span");
+  title.className = "place-search__result-title";
+  title.textContent = place.name || place.display_name.split(",")[0];
+
+  const address = document.createElement("span");
+  address.className = "place-search__result-address";
+  address.textContent = place.display_name;
+
+  button.append(title, address);
+  button.addEventListener("click", () => {
+    placeSearchSelection.textContent =
+      `Coordinates for ${title.textContent}: ${place.lat}, ${place.lon}`;
+    placeSearchSelection.hidden = false;
+  });
+
+  item.append(button);
+  return item;
+}
+
+if (
+  placeSearchForm &&
+  placeSearchInput &&
+  placeSearchButton &&
+  placeSearchStatus &&
+  placeSearchError &&
+  placeSearchFieldError &&
+  placeSearchSelection &&
+  placeSearchResults
+) {
+  placeSearchInput.addEventListener("input", clearPlaceSearchFieldError);
+
+  placeSearchForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (isSearchingPlaces) {
+      return;
+    }
+
+    const query = placeSearchInput.value.trim();
+
+    if (!query) {
+      placeSearchInput.setAttribute("aria-invalid", "true");
+      placeSearchFieldError.textContent = "Enter a place or area in Lagos.";
+      placeSearchFieldError.hidden = false;
+      placeSearchInput.focus();
+      return;
+    }
+
+    clearPlaceSearchFieldError();
+    isSearchingPlaces = true;
+    if (document.activeElement === placeSearchButton) {
+      placeSearchInput.focus();
+    }
+    placeSearchButton.disabled = true;
+    placeSearchForm.setAttribute("aria-busy", "true");
+    placeSearchResults.setAttribute("aria-busy", "true");
+    placeSearchStatus.dataset.state = "loading";
+    placeSearchStatus.textContent = `Searching OpenStreetMap for ${query}...`;
+    placeSearchError.hidden = true;
+    placeSearchError.textContent = "";
+    placeSearchSelection.hidden = true;
+    placeSearchSelection.textContent = "";
+    placeSearchResults.replaceChildren();
+
+    try {
+      const places = await searchLagosPlaces(query);
+
+      if (places.length === 0) {
+        placeSearchStatus.dataset.state = "empty";
+        placeSearchStatus.textContent =
+          `No places found for "${query}". Try a nearby area or another spelling.`;
+        return;
+      }
+
+      placeSearchStatus.dataset.state = "success";
+      placeSearchStatus.textContent =
+        `Found ${places.length} ${places.length === 1 ? "place" : "places"} in Lagos. Select one to view its coordinates.`;
+      placeSearchResults.append(...places.map(createPlaceResult));
+    } catch (error) {
+      console.error("Could not search OpenStreetMap for Lagos places.", error);
+      placeSearchStatus.textContent = "";
+      placeSearchStatus.dataset.state = "error";
+      placeSearchError.textContent =
+        "We could not complete the place search. Check your connection and try again.";
+      placeSearchError.hidden = false;
+    } finally {
+      isSearchingPlaces = false;
+      placeSearchButton.disabled = false;
+      placeSearchForm.removeAttribute("aria-busy");
+      placeSearchResults.setAttribute("aria-busy", "false");
+    }
+  });
+}
+
 function isSpot(spot) {
   return (
     spot !== null &&
@@ -117,4 +280,3 @@ if (spotForm) {
 }
 
 setTimeout(() => {console.log("This message will be logged after a delay.");}, 2000);
-

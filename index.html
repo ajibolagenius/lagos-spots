@@ -76,6 +76,32 @@
                 <p>Two local favorites, each with its own kind of energy.</p>
             </div>
 
+            <form class="place-search" id="place-search-form" role="search" aria-label="Search Lagos places">
+                <label for="place-search-input">Search Lagos by place or area</label>
+                <div class="place-search__controls">
+                    <input
+                        id="place-search-input"
+                        name="place"
+                        type="search"
+                        autocomplete="off"
+                        placeholder="Try Surulere, Yaba, or Victoria Island"
+                        aria-describedby="place-search-hint place-search-error"
+                        required
+                        minlength="2">
+                    <button class="place-search__submit" id="place-search-submit" type="submit">Search places</button>
+                </div>
+                <p class="place-search__hint" id="place-search-hint">
+                    Search OpenStreetMap for places in Lagos.
+                    <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>
+                </p>
+                <p class="place-search__field-error" id="place-search-error" hidden></p>
+            </form>
+
+            <p class="spots-status place-search__status" id="place-search-status" role="status" aria-live="polite" aria-atomic="true"></p>
+            <p class="place-search__error" id="place-search-error-message" role="alert" hidden></p>
+            <p class="place-search__selection" id="place-search-selection" role="status" aria-live="polite" hidden></p>
+            <ul class="spots-grid place-search__results" id="place-search-results" aria-label="Place search results" aria-busy="false"></ul>
+
             <p class="spots-status" id="spots-status" role="status" aria-live="polite"></p>
             <div class="spots-grid" id="spots-list">
                 <article class="spot-card spot-card--bogobiri" id="spot-bogobiri">
