@@ -69,14 +69,14 @@ const spot1: Spot = {
 };
 
 const spot2: Spot = {
-    id: 2,
-    name: "Nike Art Gallery",
-    category: "Art",
-    area: "Lekki",
-    fee: 500,
-    description: "A vibrant art gallery showcasing contemporary Nigerian art.",
-    isFavorite: true,
-}
+  id: 2,
+  name: "Nike Art Gallery",
+  category: "Art",
+  area: "Lekki",
+  fee: 500,
+  description: "A vibrant art gallery showcasing contemporary Nigerian art.",
+  isFavorite: true,
+};
 
 // 2. Union Types & Literal Types
 
@@ -95,5 +95,59 @@ const goodSpot: SpotWithStrictCategory = {
   id: 2,
   name: "Hard Rock Cafe",
   category: "Nightlife", // 🟢 Valid!
-  area: "VI"
+  area: "VI",
 };
+
+// Module 5: DOM & Event Typing in the Browser
+// 1. querySelector returns HTMLElement | null by default:
+const heading = document.querySelector("h1") as HTMLHeadingElement | null;
+
+const paragraph = document.querySelector("p") as HTMLParagraphElement | null;
+
+// 2. Form Inputs have properties like .value that general elements don't:
+// Use Type Assertions (as HTMLInputElement) when you know the exact tag:
+const searchInput = document.querySelector("#search-input") as HTMLInputElement;
+
+console.log(searchInput.value); // Now TypeScript knows this is an input element
+
+// 3. Typing Event Listeners:
+searchInput.addEventListener("input", (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  console.log(`Typing: ${target.value}`);
+});
+
+const submitForm = document.querySelector("#add-spot-form") as HTMLFormElement;
+submitForm.addEventListener("submit", (event: SubmitEvent) => {
+  event.preventDefault();
+  console.log("Form submitted!");
+});
+
+// Module 6: Introduction to Generics (<T>)
+function getFromStorage<T>(key: string, fallbackValue: T): T {
+  const rawData = localStorage.getItem(key);
+  if (!rawData) {
+    return fallbackValue;
+  }
+  try {
+    return JSON.parse(rawData) as T;
+  } catch (error) {
+    console.error("Error parsing data from localStorage:", error);
+    return fallbackValue;
+  }
+}
+
+// 1. Reading an array of numbers:
+const savedIds = getFromStorage<number[]>("favorite_ids", []);
+savedIds.push(10); // Fully autocompleted as number[]!
+
+// 2. Reading a user object:
+interface UserProfile {
+  name: string;
+  theme: "light" | "dark";
+}
+
+const userProfile = getFromStorage<UserProfile>("user_pref", {
+  name: "Guest",
+  theme: "light",
+});
+console.log(userProfile.theme); // Fully autocompleted!
