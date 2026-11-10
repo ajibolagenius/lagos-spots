@@ -151,3 +151,17 @@ const userProfile = getFromStorage<UserProfile>("user_pref", {
   theme: "light",
 });
 console.log(userProfile.theme); // Fully autocompleted!
+
+// Week 10 Hands-on Classroom Exercises
+
+interface Student {
+  id: number;
+  name: string;
+  completedWeeks: number[];
+}
+
+const students: Student[] = [
+  { id: 1, name: "Alice", completedWeeks: [1, 2, 3] },
+  { id: 2, name: "Bob", completedWeeks: [1, 2] },
+  { id: 3, name: "Charlie", completedWeeks: [1, 2, 3, 4] },
+];
