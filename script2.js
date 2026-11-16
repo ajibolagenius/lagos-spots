@@ -1,18 +1,24 @@
-let firstName = "Opeyemi"
-let lastName = "Akintunde"
-let school = "Lagos Data School"
-let course = "Software Engineering"
+function welcomeBanner() {
+    return (
+        <div class="banner" onclick={() => alert("Welcome to Lagos Spots!")}>
+            <h1>Welcome to Lagos Spots!</h1>
+            <p>Explore the best places in Lagos, Nigeria.</p>
+        </div>
+    )
+}
 
-// My name is Opeyemi Akintunde, a student of Lagos Data School, studying Software Engineering
+// Component in React
 
-// console.log(firstName + lastName)
-// console.log("My name is", firstName + lastName)
-// console.log("My name is", firstName + " " + lastName)
-// console.log("My name is" + " " + firstName + " " + lastName)
+// function WelcomeBanner() {
+//     return (
+//         <div className="banner" onClick={() => alert("Welcome to Lagos Spots!")}>
+//             <h1>Welcome to Lagos Spots!!!</h1>
+//             <p>Explore the best places in Lagos, Nigeria.</p>
+//         </div>
+//     )
+// }
 
-// console.log("My name is" + " " + firstName + " " + lastName + ", a student of" + " " + school + ", studying" + " " + course);
 
-// "", ', `
-
-// Template Literals — ${}
-console.log(`My name is ${firstName} ${lastName}, a student of ${school}, studying ${course}. Do you know that 2 ** 35 is equal to ${2 ** 35}?`);
+// Home — WelcomeBanner()
+// Work — WelcomeBanner()
+// About — WelcomeBanner()
