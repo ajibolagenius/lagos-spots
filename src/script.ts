@@ -165,3 +165,17 @@ const students: Student[] = [
   { id: 2, name: "Bob", completedWeeks: [1, 2] },
   { id: 3, name: "Charlie", completedWeeks: [1, 2, 3, 4] },
 ];
+
+
+// States, Hooks and Forms
+
+function BrokenCounter() {
+  let count = 0;
+
+  function handleClick() {
+    count++
+    console.log(count)
+  }
+
+  return `<button onclick=${handleClick}>Clicked ${count} times</button>`
+}
